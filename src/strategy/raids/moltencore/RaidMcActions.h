@@ -21,4 +21,12 @@ public:
     bool Execute(Event event) override;
 };
 
+class McShazzrahMoveAwayAction : public MovementAction
+{
+public:
+    McShazzrahMoveAwayAction(PlayerbotAI* botAI, std::string const name = "mc shazzrah move away")
+        : MovementAction(botAI, name) {}
+    bool Execute(Event event) override;
+};
+
 #endif

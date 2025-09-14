@@ -1,12 +1,21 @@
 #include "RaidMcActions.h"
 
 #include "Playerbots.h"
+#include "RaidMcTriggers.h"
+#include "RaidMcHelpers.h"
+
+static constexpr float INFERNO_DISTANCE = 20.0f;
+
+// don't get hit by Arcane Explosion but still be in casting range
+static constexpr float ARCANE_EXPLOSION_DISTANCE = 26.0f;
+
+using namespace MoltenCoreHelpers;
 
 bool McCheckShouldMoveFromGroupAction::Execute(Event event)
 {
-    if (bot->HasAura(20475))  // barron geddon's living bomb
+    if (bot->HasAura(SPELL_LIVING_BOMB)) // baron geddon's living bomb
     {
-        if (!botAI->HasStrategy("move from group", BotState::BOT_STATE_COMBAT))
+        if (!botAI->HasStrategy("move from group", BOT_STATE_COMBAT))
         {
             // add/remove from both for now as it will make it more obvious to
             // player if this strat remains on after fight somehow
@@ -15,7 +24,7 @@ bool McCheckShouldMoveFromGroupAction::Execute(Event event)
             return true;
         }
     }
-    else if (botAI->HasStrategy("move from group", BotState::BOT_STATE_COMBAT))
+    else if (botAI->HasStrategy("move from group", BOT_STATE_COMBAT))
     {
         // add/remove from both for now as it will make it more obvious to
         // player if this strat remains on after fight somehow
@@ -28,16 +37,28 @@ bool McCheckShouldMoveFromGroupAction::Execute(Event event)
 
 bool McMoveFromBaronGeddonAction::Execute(Event event)
 {
-    const float radius = 25.0f;  // more than should be needed but bots keep trying to run back in
     if (Unit* boss = AI_VALUE2(Unit*, "find target", "baron geddon"))
     {
-        long distToTravel = radius - bot->GetDistance(boss);
+        float distToTravel = INFERNO_DISTANCE - bot->GetDistance(boss);
         if (distToTravel > 0)
         {
-            // float angle = bot->GetAngle(boss) + M_PI;
-            // return Move(angle, distToTravel);
+            // Stop current spell first
+            bot->AttackStop();
+            bot->InterruptNonMeleeSpells(false);
+
             return MoveAway(boss, distToTravel);
         }
+    }
+    return false;
+}
+
+bool McShazzrahMoveAwayAction::Execute(Event event)
+{
+    if (Unit* boss = AI_VALUE2(Unit*, "find target", "shazzrah"))
+    {
+        float distToTravel = ARCANE_EXPLOSION_DISTANCE - bot->GetDistance(boss);
+        if (distToTravel > 0)
+            return MoveAway(boss, distToTravel);
     }
     return false;
 }
