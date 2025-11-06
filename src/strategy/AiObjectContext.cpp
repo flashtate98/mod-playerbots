@@ -33,6 +33,8 @@
 #include "raids/RaidStrategyContext.h"
 #include "raids/aq20/RaidAq20ActionContext.h"
 #include "raids/aq20/RaidAq20TriggerContext.h"
+#include "raids/aq40/RaidAq40ActionContext.h"
+#include "raids/aq40/RaidAq40TriggerContext.h"
 #include "raids/moltencore/RaidMcActionContext.h"
 #include "raids/moltencore/RaidMcTriggerContext.h"
 #include "raids/blackwinglair/RaidBwlActionContext.h"
@@ -112,6 +114,7 @@ void AiObjectContext::BuildSharedActionContexts(SharedNamedObjectContextList<Act
     actionContexts.Add(new ChatActionContext());
     actionContexts.Add(new WorldPacketActionContext());
     actionContexts.Add(new RaidAq20ActionContext());
+    actionContexts.Add(new RaidAq40ActionContext());
     actionContexts.Add(new RaidMcActionContext());
     actionContexts.Add(new RaidBwlActionContext());
     actionContexts.Add(new RaidKarazhanActionContext());
@@ -147,6 +150,7 @@ void AiObjectContext::BuildSharedTriggerContexts(SharedNamedObjectContextList<Tr
     triggerContexts.Add(new ChatTriggerContext());
     triggerContexts.Add(new WorldPacketTriggerContext());
     triggerContexts.Add(new RaidAq20TriggerContext());
+    triggerContexts.Add(new RaidAq40TriggerContext());
     triggerContexts.Add(new RaidMcTriggerContext());
     triggerContexts.Add(new RaidBwlTriggerContext());
     triggerContexts.Add(new RaidKarazhanTriggerContext());
