@@ -102,7 +102,6 @@ namespace KarazhanHelpers
         extern const Position NightbaneRainOfBonesPosition;
     }
 
-    Unit* GetFirstAliveUnit(const std::vector<Unit*>& units);
     void MarkTargetWithIcon(Player* bot, Unit* target, uint8 iconId);
     void MarkTargetWithSkull(Player* bot, Unit* target);
     void MarkTargetWithStar(Player* bot, Unit* target);
