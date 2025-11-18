@@ -9,7 +9,7 @@ class RaidMcStrategy : public Strategy
 {
 public:
     RaidMcStrategy(PlayerbotAI* botAI) : Strategy(botAI) {}
-    std::string const getName() override { return "mc"; }
+    std::string const getName() override { return "moltencore"; }
     void InitTriggers(std::vector<TriggerNode*>& triggers) override;
     void InitMultipliers(std::vector<Multiplier*> &multipliers) override;
 };
