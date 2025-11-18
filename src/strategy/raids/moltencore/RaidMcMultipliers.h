@@ -10,10 +10,10 @@ public:
     float GetValue(Action* action) override;
 };
 
-class BaronGeddonInfernoMultiplier : public Multiplier
+class BaronGeddonAbilityMultiplier : public Multiplier
 {
 public:
-    BaronGeddonInfernoMultiplier(PlayerbotAI* botAI) : Multiplier(botAI, "baron geddon inferno multiplier") {}
+    BaronGeddonAbilityMultiplier(PlayerbotAI* botAI) : Multiplier(botAI, "baron geddon ability multiplier") {}
     float GetValue(Action* action) override;
 };
 

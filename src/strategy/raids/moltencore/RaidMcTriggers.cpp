@@ -7,7 +7,6 @@ using namespace MoltenCoreHelpers;
 
 bool McLivingBombDebuffTrigger::IsActive()
 {
-    // TODO Remove boss check?
     if (AI_VALUE2(Unit*, "find target", "baron geddon"))
         return bot->HasAura(SPELL_LIVING_BOMB);
     return false;
