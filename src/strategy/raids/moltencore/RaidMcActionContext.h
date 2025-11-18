@@ -15,7 +15,7 @@ public:
         creators["mc gehennas shadow resistance"] = &RaidMcActionContext::gehennas_shadow_resistance;
         creators["mc garr fire resistance"] = &RaidMcActionContext::garr_fire_resistance;
         creators["mc baron geddon fire resistance"] = &RaidMcActionContext::baron_geddon_fire_resistance;
-        creators["mc check should move from group"] = &RaidMcActionContext::check_should_move_from_group;
+        creators["mc move from group"] = &RaidMcActionContext::check_should_move_from_group;
         creators["mc move from baron geddon"] = &RaidMcActionContext::move_from_baron_geddon;
         creators["mc shazzrah move away"] = &RaidMcActionContext::shazzrah_move_away;
         creators["mc sulfuron harbinger fire resistance"] = &RaidMcActionContext::sulfuron_harbinger_fire_resistance;
@@ -30,7 +30,7 @@ private:
     static Action* gehennas_shadow_resistance(PlayerbotAI* botAI) { return new BossShadowResistanceAction(botAI, "gehennas"); }
     static Action* garr_fire_resistance(PlayerbotAI* botAI) { return new BossFireResistanceAction(botAI, "garr"); }
     static Action* baron_geddon_fire_resistance(PlayerbotAI* botAI) { return new BossFireResistanceAction(botAI, "baron geddon"); }
-    static Action* check_should_move_from_group(PlayerbotAI* botAI) { return new McCheckShouldMoveFromGroupAction(botAI); }
+    static Action* check_should_move_from_group(PlayerbotAI* botAI) { return new McMoveFromGroupAction(botAI); }
     static Action* move_from_baron_geddon(PlayerbotAI* botAI) { return new McMoveFromBaronGeddonAction(botAI); }
     static Action* shazzrah_move_away(PlayerbotAI* botAI) { return new McShazzrahMoveAwayAction(botAI); }
     static Action* sulfuron_harbinger_fire_resistance(PlayerbotAI* botAI) { return new BossFireResistanceAction(botAI, "sulfuron harbinger"); }

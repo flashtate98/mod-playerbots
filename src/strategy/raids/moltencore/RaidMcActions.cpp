@@ -4,6 +4,7 @@
 #include "RaidMcTriggers.h"
 #include "RaidMcHelpers.h"
 
+static constexpr float LIVING_BOMB_DISTANCE = 20.0f;
 static constexpr float INFERNO_DISTANCE = 20.0f;
 
 // don't get hit by Arcane Explosion but still be in casting range
@@ -11,28 +12,9 @@ static constexpr float ARCANE_EXPLOSION_DISTANCE = 26.0f;
 
 using namespace MoltenCoreHelpers;
 
-bool McCheckShouldMoveFromGroupAction::Execute(Event event)
+bool McMoveFromGroupAction::Execute(Event event)
 {
-    if (bot->HasAura(SPELL_LIVING_BOMB)) // baron geddon's living bomb
-    {
-        if (!botAI->HasStrategy("move from group", BOT_STATE_COMBAT))
-        {
-            // add/remove from both for now as it will make it more obvious to
-            // player if this strat remains on after fight somehow
-            botAI->ChangeStrategy("+move from group", BOT_STATE_NON_COMBAT);
-            botAI->ChangeStrategy("+move from group", BOT_STATE_COMBAT);
-            return true;
-        }
-    }
-    else if (botAI->HasStrategy("move from group", BOT_STATE_COMBAT))
-    {
-        // add/remove from both for now as it will make it more obvious to
-        // player if this strat remains on after fight somehow
-        botAI->ChangeStrategy("-move from group", BOT_STATE_NON_COMBAT);
-        botAI->ChangeStrategy("-move from group", BOT_STATE_COMBAT);
-        return true;
-    }
-    return false;
+    return MoveFromGroup(LIVING_BOMB_DISTANCE);
 }
 
 bool McMoveFromBaronGeddonAction::Execute(Event event)

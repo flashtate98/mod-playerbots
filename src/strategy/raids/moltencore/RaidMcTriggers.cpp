@@ -7,13 +7,9 @@ using namespace MoltenCoreHelpers;
 
 bool McLivingBombDebuffTrigger::IsActive()
 {
-    // if bot has baron geddon's living bomb, we need to add strat, otherwise we need to remove
-    // only do when fighting baron geddon (to avoid modifying strat set by player outside this fight)
-    if (Unit* boss = AI_VALUE2(Unit*, "find target", "baron geddon"))
-    {
-        if (boss->IsInCombat())
-            return bot->HasAura(SPELL_LIVING_BOMB) != botAI->HasStrategy("move from group", BOT_STATE_COMBAT);
-    }
+    // TODO Remove boss check?
+    if (AI_VALUE2(Unit*, "find target", "baron geddon"))
+        return bot->HasAura(SPELL_LIVING_BOMB);
     return false;
 }
 

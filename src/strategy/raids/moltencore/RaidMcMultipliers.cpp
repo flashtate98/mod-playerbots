@@ -47,7 +47,7 @@ float BaronGeddonInfernoMultiplier::GetValue(Action* action)
     if (boss && boss->HasAura(SPELL_INFERNO))
     {
         if (dynamic_cast<MovementAction*>(action) &&
-            !dynamic_cast<MoveFromGroupAction*>(action) && // enabled in McCheckShouldMoveFromGroupAction
+            !dynamic_cast<McMoveFromGroupAction*>(action) &&
             !dynamic_cast<McMoveFromBaronGeddonAction*>(action))
             return 0.0f;
 

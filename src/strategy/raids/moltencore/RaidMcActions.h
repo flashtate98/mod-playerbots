@@ -5,11 +5,11 @@
 #include "PlayerbotAI.h"
 #include "Playerbots.h"
 
-class McCheckShouldMoveFromGroupAction : public Action
+class McMoveFromGroupAction : public MovementAction
 {
 public:
-    McCheckShouldMoveFromGroupAction(PlayerbotAI* botAI, std::string const name = "mc check should move from group")
-        : Action(botAI, name) {}
+    McMoveFromGroupAction(PlayerbotAI* botAI, std::string const name = "mc move from group")
+        : MovementAction(botAI, name) {}
     bool Execute(Event event) override;
 };
 
