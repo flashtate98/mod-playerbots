@@ -95,7 +95,7 @@ bool AttumenTheHuntsmanSplitBossesAction::Execute(Event event)
     if (attumen->GetVictim() == bot && midnight->GetVictim() != bot)
     {
         const float minDistance = 6.0f;
-        const float safeDistance = 8.0f
+        const float safeDistance = 8.0f;
         Unit* nearestPlayer = GetNearestPlayerInRadius(bot, minDistance);
         if (nearestPlayer)
             return MoveAway(nearestPlayer, safeDistance - minDistance);
