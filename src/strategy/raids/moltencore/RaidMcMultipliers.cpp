@@ -41,21 +41,37 @@ float GarrDisableDpsAoeMultiplier::GetValue(Action* action)
     return 1.0f;
 }
 
+static bool IsAllowedGeddonMovementAction(Action* action)
+{
+    if (dynamic_cast<MovementAction*>(action) &&
+                !dynamic_cast<McMoveFromGroupAction*>(action) &&
+                !dynamic_cast<McMoveFromBaronGeddonAction*>(action))
+        return false;
+
+    if (dynamic_cast<CastReachTargetSpellAction*>(action))
+        return false;
+
+    return true;
+}
+
 float BaronGeddonAbilityMultiplier::GetValue(Action* action)
 {
     if (Unit* boss = AI_VALUE2(Unit*, "find target", "baron geddon"))
     {
-        if (boss->HasAura(SPELL_INFERNO) || bot->HasAura(SPELL_LIVING_BOMB))
+        if (boss->HasAura(SPELL_INFERNO))
         {
-            if (dynamic_cast<MovementAction*>(action) &&
-                !dynamic_cast<McMoveFromGroupAction*>(action) &&
-                !dynamic_cast<McMoveFromBaronGeddonAction*>(action))
-                return 0.0f;
-
-            if (dynamic_cast<CastReachTargetSpellAction*>(action))
+            if (!IsAllowedGeddonMovementAction(action))
                 return 0.0f;
         }
     }
+
+    // No check for Baron Geddon, because bots may have the bomb even after Geddon died.
+    if (bot->HasAura(SPELL_LIVING_BOMB))
+    {
+        if (!IsAllowedGeddonMovementAction(action))
+            return 0.0f;
+    }
+
     return 1.0f;
 }
 

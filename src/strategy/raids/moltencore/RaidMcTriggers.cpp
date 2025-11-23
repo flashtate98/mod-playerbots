@@ -7,9 +7,8 @@ using namespace MoltenCoreHelpers;
 
 bool McLivingBombDebuffTrigger::IsActive()
 {
-    if (AI_VALUE2(Unit*, "find target", "baron geddon"))
-        return bot->HasAura(SPELL_LIVING_BOMB);
-    return false;
+    // No check for Baron Geddon, because bots may have the bomb even after Geddon died.
+    return bot->HasAura(SPELL_LIVING_BOMB);
 }
 
 bool McBaronGeddonInfernoTrigger::IsActive()
