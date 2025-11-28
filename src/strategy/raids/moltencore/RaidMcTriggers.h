@@ -19,4 +19,11 @@ public:
     bool IsActive() override;
 };
 
+class McShazzrahRangedTrigger : public Trigger
+{
+public:
+    McShazzrahRangedTrigger(PlayerbotAI* botAI) : Trigger(botAI, "mc shazzrah ranged") {}
+    bool IsActive() override;
+};
+
 #endif
