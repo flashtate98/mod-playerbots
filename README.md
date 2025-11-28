@@ -1,12 +1,3 @@
-THIS FORK IS USED TO TEST ANY RAID STRATEGIES THAT ARENT IN THE MAIN VERSION:
-
-List of current strats not officially implemented are below:
-
-- AQ40 Strats by acore-crap
-- Molten Core Strategies by HennyWilly
-- Karazhan Refactor with Nightbane strats by Brighton-Chi
-- SerpentShrine Cavern by Brighton-Chi
-
 <p align="center">
     <a href="https://github.com/mod-playerbots/mod-playerbots/blob/master/README.md">English</a>
     |
