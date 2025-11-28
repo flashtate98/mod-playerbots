@@ -25,7 +25,7 @@ public:
     {
         creators["aq20"] = &RaidStrategyContext::aq20;
         creators["aq40"] = &RaidStrategyContext::aq40;
-        creators["mc"] = &RaidStrategyContext::mc;
+        creators["moltencore"] = &RaidStrategyContext::moltencore;
         creators["bwl"] = &RaidStrategyContext::bwl;
         creators["karazhan"] = &RaidStrategyContext::karazhan;
         creators["magtheridon"] = &RaidStrategyContext::magtheridon;
@@ -43,7 +43,7 @@ public:
 private:
     static Strategy* aq20(PlayerbotAI* botAI) { return new RaidAq20Strategy(botAI); }
     static Strategy* aq40(PlayerbotAI* botAI) { return new RaidAq40Strategy(botAI); }
-    static Strategy* mc(PlayerbotAI* botAI) { return new RaidMcStrategy(botAI); }
+    static Strategy* moltencore(PlayerbotAI* botAI) { return new RaidMcStrategy(botAI); }
     static Strategy* bwl(PlayerbotAI* botAI) { return new RaidBwlStrategy(botAI); }
     static Strategy* karazhan(PlayerbotAI* botAI) { return new RaidKarazhanStrategy(botAI); }
     static Strategy* magtheridon(PlayerbotAI* botAI) { return new RaidMagtheridonStrategy(botAI); }
