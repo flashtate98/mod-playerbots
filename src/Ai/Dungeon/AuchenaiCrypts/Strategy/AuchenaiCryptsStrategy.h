@@ -1,7 +1,6 @@
 #ifndef _PLAYERBOT_TBCDUNGEONAUCHENAICRYPTSSTRATEGY_H
 #define _PLAYERBOT_TBCDUNGEONAUCHENAICRYPTSSTRATEGY_H
 
-#include "Multiplier.h"
 #include "AiObjectContext.h"
 #include "Strategy.h"
 
