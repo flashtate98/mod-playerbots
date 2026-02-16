@@ -7,7 +7,7 @@
 
 float ShirrakFocusFireMultiplier::GetValue(Action* action)
 {
-    Unit* boss = AI_VALUE2(Unit*, "find target", "shirrak");
+    Unit* boss = AI_VALUE2(Unit*, "find target", "shirrak the dead watcher");
     if (!boss)
         return 1.0f;
 
