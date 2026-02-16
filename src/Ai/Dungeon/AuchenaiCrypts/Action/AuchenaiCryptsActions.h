@@ -10,3 +10,5 @@ public:
         : MovementAction(botAI, name) {}
     bool Execute(Event /*event*/) override;
 };
+
+#endif

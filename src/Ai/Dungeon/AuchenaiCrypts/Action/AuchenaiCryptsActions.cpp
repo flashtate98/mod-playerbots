@@ -1,4 +1,5 @@
 #include "Playerbots.h"
+#include "AuchenaiCryptsTriggers.h"
 #include "AuchenaiCryptsActions.h"
 #include "AuchenaiCryptsStrategy.h"
 
@@ -13,14 +14,14 @@ bool ShirrakFocusFireAction::Execute(Event /*event*/)
     float dangerRadius = 12.0f;
     float buffer = 3.0f;
 
-    float dist = bot->GetExactDist2d(flare->GetPositionX(), flare->GetPositionY());
+    float dist = bot->GetExactDist2d(flare);
     if (dist > dangerRadius)
         return false;
 
     float dx = bot->GetPositionX() - flare->GetPositionX();
     float dy = bot->GetPositionY() - flare->GetPositionY();
 
-    if (dist == 0.0f)
+    if (dist <= 0.001f)
         return false;
 
     float safeDist = dangerRadius + buffer;
@@ -31,7 +32,7 @@ bool ShirrakFocusFireAction::Execute(Event /*event*/)
 
     botAI->Reset();
 
-    return MoveTo(moveX, moveY, bot->GetPositionZ(),
-                  false, false, false, true,
-                  MovementPriority::MOVEMENT_FORCED);
+    return MoveTo(static_cast<uint32>(flare->GetMapId()), moveX, moveY, bot->GetPositionZ(),
+              false, false, false, true,
+              MovementPriority::MOVEMENT_FORCED);
 }
