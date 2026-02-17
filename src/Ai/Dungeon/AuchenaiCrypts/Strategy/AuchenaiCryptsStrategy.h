@@ -7,8 +7,8 @@
 class TbcDungeonAuchenaiCryptsStrategy : public Strategy
 {
 public:
-    TbcDungeonAuchenaiCryptsStrategy(PlayerbotAI* ai) : Strategy(ai) {}
-    virtual std::string const getName() override { return "auchenai crypts"; }
+    TbcDungeonAuchenaiCryptsStrategy(PlayerbotAI* botAI) : Strategy(botAI) {}
+    virtual std::string const getName() override { return "tbc-ac"; }
     virtual void InitTriggers(std::vector<TriggerNode*> &triggers) override;
     virtual void InitMultipliers(std::vector<Multiplier*> &multipliers) override;
 };

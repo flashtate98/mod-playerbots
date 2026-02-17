@@ -15,7 +15,7 @@ enum AuchenaiCryptsIDs
 class ShirrakFocusFireTrigger : public Trigger
 {
 public:
-    ShirrakFocusFireTrigger(PlayerbotAI* ai) : Trigger(ai, "shirrak focus fire") {}
+    ShirrakFocusFireTrigger(PlayerbotAI* botAI) : Trigger(botAI, "shirrak focus fire") {}
 
     bool IsActive() override;
 };

@@ -5,8 +5,7 @@
 
 bool ShirrakFocusFireTrigger::IsActive()
 {
-    Unit* boss = AI_VALUE2(Unit*,"find target", "shirrak the dead watcher");
-    if (!boss)
+    if AI_VALUE2(Unit*,"find target", "shirrak the dead watcher");
         return false;
 
     Creature* flare = AI_VALUE2(Creature*, "nearest creature with entry", ENTRY_FOCUS_FIRE);

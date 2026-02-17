@@ -12,7 +12,7 @@ class TbcDungeonAuchenaiCryptsTriggerContext : NamedObjectContext<Trigger>
             creators["shirrak focus fire"] = &TbcDungeonAuchenaiCryptsTriggerContext::flee_focus_fire;
         }
     private:
-        static Trigger* flee_focus_fire(PlayerbotAI* ai) { return new ShirrakFocusFireTrigger(ai); }
+        static Trigger* flee_focus_fire(PlayerbotAI* botAI) { return new ShirrakFocusFireTrigger(botAI); }
 };
 
 #endif

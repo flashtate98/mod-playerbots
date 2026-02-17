@@ -1,5 +1,3 @@
-#include "AuchenaiCryptsTriggers.h"
-#include "AuchenaiCryptsStrategy.h"
 #include "AuchenaiCryptsMultipliers.h"
 
 void TbcDungeonAuchenaiCryptsStrategy::InitTriggers(std::vector<TriggerNode*>& triggers)
@@ -13,3 +11,5 @@ void TbcDungeonAuchenaiCryptsStrategy::InitMultipliers(std::vector<Multiplier*>&
 {
     multipliers.push_back(new ShirrakFocusFireMultiplier(botAI));
 }
+
+

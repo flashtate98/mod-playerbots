@@ -12,7 +12,7 @@ class TbcDungeonAuchenaiCryptsActionContext : public NamedObjectContext<Action>
             creators["flee focus fire"] = &TbcDungeonAuchenaiCryptsActionContext::flee_focus_fire;
         }
     private:
-        static Action* flee_focus_fire(PlayerbotAI* ai) {return new ShirrakFocusFireAction(ai); }
+        static Action* flee_focus_fire(PlayerbotAI* botAI) {return new ShirrakFocusFireAction(botAI); }
 };
 
 #endif

@@ -6,8 +6,9 @@
 class ShirrakFocusFireMultiplier : public Multiplier
 {
 public:
-    ShirrakFocusFireMultiplier(PlayerbotAI* ai) : Multiplier(ai, "flee focus fire") {}
+    ShirrakFocusFireMultiplier(PlayerbotAI* botAI) : Multiplier(botAI, "flee focus fire") {}
     float GetValue(Action* action) override;
+    
 };
 
 #endif
