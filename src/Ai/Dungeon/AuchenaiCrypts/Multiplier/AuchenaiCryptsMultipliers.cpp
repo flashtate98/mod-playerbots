@@ -16,7 +16,7 @@ float ShirrakFocusFireMultiplier::GetValue(Action* action)
     if (!flare || !flare->IsAlive())
         return 1.0f;
 
-    float dist = bot->GetExactDist2d(flare);
+    float dist = bot->GetDistance2d(flare);
     if (dist > 12.0f)
         return 1.0f;
 

@@ -1,7 +1,5 @@
 #include "Playerbots.h"
-#include "AuchenaiCryptsTriggers.h"
 #include "AuchenaiCryptsActions.h"
-#include "AuchenaiCryptsStrategy.h"
 
 // Move away from Shirrak's Focus Fire ability.
 
@@ -14,7 +12,7 @@ bool ShirrakFocusFireAction::Execute(Event /*event*/)
     float dangerRadius = 12.0f;
     float buffer = 3.0f;
 
-    float dist = bot->GetExactDist2d(flare);
+    float dist = bot->GetDistance2d(flare);
     if (dist > dangerRadius)
         return false;
 
