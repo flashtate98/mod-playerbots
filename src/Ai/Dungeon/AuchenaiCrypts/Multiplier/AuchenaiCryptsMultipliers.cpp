@@ -16,10 +16,10 @@ float ShirrakFocusFireMultiplier::GetValue(Action* action)
     if (dist >= dangerRadius)
     {
          if (dynamic_cast<WipeAction*>(action))
-                return 1.0f;
+            return 1.0f;
         
-        if action->GetName() == "flee focus fire")
-                return 1.0f;
+         if (dynamic_cast<ShirrakFocusFireAction*>(action))
+            return 1.0f;
 
          if (dynamic_cast<ReachTargetAction*>(action)&&
             dynamic_cast<MovementAction*>(action) &&
