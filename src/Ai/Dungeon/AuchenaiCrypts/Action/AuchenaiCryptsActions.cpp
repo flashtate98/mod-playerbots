@@ -6,7 +6,7 @@
 
 bool ShirrakFocusFireAction::Execute(Event /*event*/)
 {
-    Creature* flare = AI_VALUE2(Creature*, "nearest creature with entry", ENTRY_FOCUS_FIRE);
+    Unit* flare = AI_VALUE2(Unit*, "nearest creature with entry", ENTRY_FOCUS_FIRE);
     if (!flare || !flare->IsAlive())
         return false;
 
@@ -27,9 +27,6 @@ bool ShirrakFocusFireAction::Execute(Event /*event*/)
 
     botAI->Reset();
 
-    return MoveTo(bot->GetMapId(), moveX, moveY, bot->GetPositionZ(),
-              false, false, false, true,
-              MovementPriority::MOVEMENT_FORCED
-              true,
-              false);
+    return MoveTo(bot->GetMapId(), moveX, moveY, bot->GetPositionZ(), false, false, 
+            false, true, MovementPriority::MOVEMENT_FORCED, true, false);
 }

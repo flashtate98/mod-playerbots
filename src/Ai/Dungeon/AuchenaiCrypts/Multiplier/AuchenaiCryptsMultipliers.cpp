@@ -1,32 +1,27 @@
 #include "AuchenaiCryptsMultipliers.h"
+#include "AuchenaiCryptsActions.h"
+#include "AuchenaiCryptsTriggers.h"
 #include "WipeAction.h"
 #include "ReachTargetActions.h"
+#include "AIObjectContext.h"
+#include "Playerbots.h"
 
 
 float ShirrakFocusFireMultiplier::GetValue(Action* action)
 {
-    Creature* flare = AI_VALUE2(Creature*, "nearest creature with entry", ENTRY_FOCUS_FIRE);
-    if (!flare || !flare->IsAlive())
-        return 1.0f;
-    
-    float dist = bot->GetDistance2d(flare);
 
-    constexpr float dangerRadius = 12.0f;
+    Unit* boss = AI_VALUE2(Unit*, "find target", "shirrak the dead watcher");
+    if (!boss)
+    return 1.0f;
 
-    if (dist >= dangerRadius)
-    {
-         if (dynamic_cast<WipeAction*>(action))
-            return 1.0f;
-        
-         if (dynamic_cast<ShirrakFocusFireAction*>(action))
+    if (dynamic_cast<WipeAction*>(action))
             return 1.0f;
 
-         if (dynamic_cast<ReachTargetAction*>(action)&&
-            dynamic_cast<MovementAction*>(action) &&
-            dynamic_cast<AttackAction*>(action) &&
-            dynamic_cast<ReachTargetSpellAction*>(action))
+    if (dynamic_cast<ShirrakFocusFireAction*>(action)&&
+            !dynamic_cast<ReachTargetAction*>(action) &&
+            !dynamic_cast<MovementAction*>(action) &&
+            !dynamic_cast<CastReachTargetSpellAction*>(action))
             return 0.0f;
-    }
     
     return 1.0f;
 }
