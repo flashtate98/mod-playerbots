@@ -12,10 +12,10 @@ enum AuchenaiCryptsIDs
     ENTRY_FOCUS_FIRE                  = 18374,
 };
 
-class ShirrakFocusFireTrigger : public Trigger
+class FleeFocusFireTrigger : public Trigger
 {
 public:
-    ShirrakFocusFireTrigger(PlayerbotAI* botAI) : Trigger(botAI, "shirrak focus fire") {}
+    FleeFocusFireTrigger(PlayerbotAI* botAI) : Trigger(botAI, "flee focus fire") {}
 
     bool IsActive() override;
 };

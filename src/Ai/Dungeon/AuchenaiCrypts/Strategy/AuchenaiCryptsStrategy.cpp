@@ -5,13 +5,13 @@
 void TbcDungeonAuchenaiCryptsStrategy::InitTriggers(std::vector<TriggerNode*>& triggers)
 {
   // Shirrak The Dead Watcher
-    triggers.push_back(new TriggerNode("shirrak focus fire", {
+    triggers.push_back(new TriggerNode("flee focus fire", {
         NextAction("flee focus fire", ACTION_EMERGENCY + 10) }));
 }
 
 void TbcDungeonAuchenaiCryptsStrategy::InitMultipliers(std::vector<Multiplier*>& multipliers)
 {
-    multipliers.push_back(new ShirrakFocusFireMultiplier(botAI));
+    multipliers.push_back(new FleeFocusFireMultiplier(botAI));
 }
 
 

@@ -3,13 +3,15 @@
 #include "AiObject.h"
 #include "AiObjectContext.h"
 
-bool ShirrakFocusFireTrigger::IsActive()
+bool FleeFocusFireTrigger::IsActive()
 {
     if (AI_VALUE2(Unit*,"find target", "shirrak the dead watcher"));
         return false;
 
-    Unit* flare = AI_VALUE2(Unit*, "nearest creature with entry", ENTRY_FOCUS_FIRE);
-    if (!flare || !flare->IsAlive())
+    Unit* flare = bot->FindNearestCreature(ENTRY_FOCUS_FIRE, 50.0f);
+    bool flareActive = flare && flare->IsAlive();
+    
+    if (!flareActive)
         return false;
 
     return true;

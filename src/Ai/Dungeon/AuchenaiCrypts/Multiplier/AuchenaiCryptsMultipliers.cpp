@@ -7,7 +7,7 @@
 #include "Playerbots.h"
 
 
-float ShirrakFocusFireMultiplier::GetValue(Action* action)
+float FleeFocusFireMultiplier::GetValue(Action* action)
 {
 
     Unit* boss = AI_VALUE2(Unit*, "find target", "shirrak the dead watcher");
@@ -17,7 +17,7 @@ float ShirrakFocusFireMultiplier::GetValue(Action* action)
     if (dynamic_cast<WipeAction*>(action))
             return 1.0f;
 
-    if (dynamic_cast<ShirrakFocusFireAction*>(action)&&
+    if (dynamic_cast<FleeFocusFireAction*>(action)&&
             !dynamic_cast<ReachTargetAction*>(action) &&
             !dynamic_cast<MovementAction*>(action) &&
             !dynamic_cast<CastReachTargetSpellAction*>(action))

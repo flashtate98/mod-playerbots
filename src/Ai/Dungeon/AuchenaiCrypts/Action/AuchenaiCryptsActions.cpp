@@ -4,29 +4,36 @@
 
 // Move away from Shirrak's Focus Fire ability.
 
-bool ShirrakFocusFireAction::Execute(Event /*event*/)
+bool FleeFocusFireAction::Execute(Event /*event*/)
 {
-    Unit* flare = AI_VALUE2(Unit*, "nearest creature with entry", ENTRY_FOCUS_FIRE);
+    Unit* flare = bot->FindNearestCreature(ENTRY_FOCUS_FIRE, 50.0f);
     if (!flare || !flare->IsAlive())
         return false;
 
-    constexpr float dangerRadius = 12.0f;
-    constexpr float buffer = 3.0f;
-
-    float dist = bot->GetDistance2d(flare);
-    if (dist > dangerRadius)
-        return false;
-
-    float dx = bot->GetPositionX() - flare->GetPositionX();
-    float dy = bot->GetPositionY() - flare->GetPositionY();
-
-    float safeDist = dangerRadius + buffer;
-
-    float moveX = flare->GetPositionX() + dx / dist * safeDist;
-    float moveY = flare->GetPositionY() + dy / dist * safeDist;
-
-    botAI->Reset();
-
-    return MoveTo(bot->GetMapId(), moveX, moveY, bot->GetPositionZ(), false, false, 
-            false, true, MovementPriority::MOVEMENT_FORCED, true, false);
+    if (bot->GetExactDist2d(flare) < 12.0f)
+        return FleePosition(flare->GetPosition(), 15.0f, 2000U);
+    else
+        return true;
+    
+    return false;
 }
+    
+    //constexpr float dangerRadius = 12.0f;
+    //constexpr float buffer = 3.0f;
+
+   //float dist = bot->GetDistance2d(flare);
+    //if (dist > dangerRadius)
+        //return false;
+
+   //float dx = bot->GetPositionX() - flare->GetPositionX();
+    //float dy = bot->GetPositionY() - flare->GetPositionY();
+
+    //float safeDist = dangerRadius + buffer;
+
+    //float moveX = flare->GetPositionX() + dx / dist * safeDist;
+    //float moveY = flare->GetPositionY() + dy / dist * safeDist;
+
+    //botAI->Reset();
+
+    //return MoveTo(bot->GetMapId(), moveX, moveY, bot->GetPositionZ(), false, false, 
+            //false, true, MovementPriority::MOVEMENT_FORCED, true, false);

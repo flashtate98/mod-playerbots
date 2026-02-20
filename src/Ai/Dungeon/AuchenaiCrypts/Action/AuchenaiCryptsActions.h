@@ -1,14 +1,16 @@
 #ifndef _PLAYERBOT_TBCDUNGEONAUCHENAICRYPTSACTIONS_H
 #define _PLAYERBOT_TBCDUNGEONAUCHENAICRYPTSACTIONS_H
 
+#include "Playerbots.h"
+#include "Action.h"
 #include "MovementActions.h"
+#include "AuchenaiCryptsTriggers.h"
 
-class ShirrakFocusFireAction : public MovementAction
+class FleeFocusFireAction : public MovementAction
 {
 public:
-    ShirrakFocusFireAction(PlayerbotAI* botAI, std::string const name = "flee focus fire") 
-        : MovementAction(botAI, name) {}
-    bool Execute(Event /*event*/) override;
+    FleeFocusFireAction(PlayerbotAI* botAI) : MovementAction(botAI, "flee focus fire") {}
+    bool Execute(Event event) override;
 };
 
 #endif
