@@ -3,6 +3,7 @@
 
 #include "AiObjectContext.h"
 #include "Strategy.h"
+#include "Multiplier.h"
 
 class TbcDungeonAuchenaiCryptsStrategy : public Strategy
 {

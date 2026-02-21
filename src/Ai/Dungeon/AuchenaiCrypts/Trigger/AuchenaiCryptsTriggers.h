@@ -2,14 +2,13 @@
 #define _PLAYERBOT_TBCDUNGEONAUCHENAICRYPTSTRIGGERS_H
 
 #include "Trigger.h"
-#include "PlayerbotAIConfig.h"
 #include "GenericTriggers.h"
 #include "DungeonStrategyUtils.h"
 
 enum AuchenaiCryptsIDs
 {
     // Shirrak The Dead Watcher
-    ENTRY_FOCUS_FIRE                  = 18374,
+    NPC_FOCUS_FIRE                  = 18374,
 };
 
 class FleeFocusFireTrigger : public Trigger

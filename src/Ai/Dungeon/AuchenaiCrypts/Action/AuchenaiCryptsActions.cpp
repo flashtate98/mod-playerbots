@@ -6,7 +6,11 @@
 
 bool FleeFocusFireAction::Execute(Event /*event*/)
 {
-    Unit* flare = bot->FindNearestCreature(ENTRY_FOCUS_FIRE, 50.0f);
+    Unit* boss = AI_VALUE2(Unit*, "find target", "shirrak");
+    if (!boss)
+        return false;
+    
+    Unit* flare = bot->FindNearestCreature(NPC_FOCUS_FIRE, 50.0f);
     if (!flare || !flare->IsAlive())
         return false;
 
