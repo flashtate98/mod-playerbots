@@ -1,4 +1,5 @@
 #include "Playerbots.h"
+#include "DynamicObject.h"
 #include "AuchenaiCryptsTriggers.h"
 #include "AuchenaiCryptsActions.h"
 
@@ -9,35 +10,20 @@ bool FleeFocusFireAction::Execute(Event /*event*/)
     Unit* boss = AI_VALUE2(Unit*, "find target", "shirrak");
     if (!boss)
         return false;
-    
-    Unit* flare = bot->FindNearestCreature(NPC_FOCUS_FIRE, 50.0f);
-    if (!flare || !flare->IsAlive())
-        return false;
 
-    if (bot->GetExactDist2d(flare) < 12.0f)
-        return FleePosition(flare->GetPosition(), 15.0f, 2000U);
-    else
-        return true;
-    
+    std::list<ObjectGuid> objects = AI_VALUE(std::list<ObjectGuid>, "nearest dynamic objects");
+    for (auto const& guid : objects)
+    {
+        DynamicObject* obj = bot->GetMap()->GetDynamicObject(guid);
+        if (obj && obj->GetSpellId() == 32286) // SPELL_FOCUS_FIRE_VISUAL
+        {
+            float radius = obj->GetRadius();
+            if (bot->GetDistance2d(obj) <= (radius + 2.0f))
+            {
+            bot->InterruptNonMeleeSpells(false);
+            return FleePosition(obj->GetPosition(), 20.0f, 3000U);
+            }
+        }
+    }
     return false;
 }
-    
-    //constexpr float dangerRadius = 12.0f;
-    //constexpr float buffer = 3.0f;
-
-   //float dist = bot->GetDistance2d(flare);
-    //if (dist > dangerRadius)
-        //return false;
-
-   //float dx = bot->GetPositionX() - flare->GetPositionX();
-    //float dy = bot->GetPositionY() - flare->GetPositionY();
-
-    //float safeDist = dangerRadius + buffer;
-
-    //float moveX = flare->GetPositionX() + dx / dist * safeDist;
-    //float moveY = flare->GetPositionY() + dy / dist * safeDist;
-
-    //botAI->Reset();
-
-    //return MoveTo(bot->GetMapId(), moveX, moveY, bot->GetPositionZ(), false, false, 
-            //false, true, MovementPriority::MOVEMENT_FORCED, true, false);

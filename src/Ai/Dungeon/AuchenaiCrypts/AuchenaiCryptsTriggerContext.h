@@ -1,10 +1,11 @@
 #ifndef _PLAYERBOT_TBCDUNGEONAUCHENAICRYPTSTRIGGERCONTEXT_H
 #define _PLAYERBOT_TBCDUNGEONAUCHENAICRYPTSTRIGGERCONTEXT_H
 
+#include "AIObjectContext.h"
 #include "TriggerContext.h"
 #include "AuchenaiCryptsTriggers.h"
 
-class TbcDungeonAuchenaiCryptsTriggerContext : NamedObjectContext<Trigger>
+class TbcDungeonAuchenaiCryptsTriggerContext : public NamedObjectContext<Trigger>
 {
     public:
         TbcDungeonAuchenaiCryptsTriggerContext()

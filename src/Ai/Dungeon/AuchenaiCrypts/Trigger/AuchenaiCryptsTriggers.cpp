@@ -1,16 +1,17 @@
 #include "Playerbots.h"
-#include "Trigger.h"
 #include "AuchenaiCryptsTriggers.h"
 #include "AiObject.h"
 #include "AiObjectContext.h"
 
 bool FleeFocusFireTrigger::IsActive()
 {
-    Unit* flare = AI_VALUE2(Unit*, "find target", "focus fire");
-    bool flareActive = flare && flare->IsAlive();
-    
-    if (!flareActive)
+    Unit* boss = AI_VALUE2(Unit*, "find target", "shirrak");
+    if (!boss) 
         return false;
 
-    return true;
+    if (boss->FindCurrentSpellBySpellId(SPELL_FOCUS_CAST))
+        return true;
+
+    return false;
+
 }

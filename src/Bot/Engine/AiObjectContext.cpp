@@ -26,6 +26,8 @@
 #include "WorldPacketActionContext.h"
 #include "WorldPacketTriggerContext.h"
 #include "Ai/Dungeon/DungeonStrategyContext.h"
+#include "Ai/Dungeon/TbcDungeonActionContext.h"
+#include "Ai/Dungeon/TbcDungeonTriggerContext.h"
 #include "Ai/Dungeon/WotlkDungeonActionContext.h"
 #include "Ai/Dungeon/WotlkDungeonTriggerContext.h"
 #include "Ai/Raid/RaidStrategyContext.h"

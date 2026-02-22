@@ -9,6 +9,9 @@ enum AuchenaiCryptsIDs
 {
     // Shirrak The Dead Watcher
     NPC_FOCUS_FIRE                  = 18374,
+    SPELL_FOCUS_CAST                = 32300,
+    SPELL_FIERY_BLAST               = 32302,
+    SPELL_FOCUS_FIRE_VISUAL         = 32286,
 };
 
 class FleeFocusFireTrigger : public Trigger
