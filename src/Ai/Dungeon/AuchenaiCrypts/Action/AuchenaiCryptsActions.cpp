@@ -1,5 +1,8 @@
 #include "Playerbots.h"
-#include "DynamicObject.h"
+#include "GridNotifiers.h"
+#include "GridNotifiersImpl.h"
+#include "Cell.h"
+#include "CellImpl.h"
 #include "AuchenaiCryptsTriggers.h"
 #include "AuchenaiCryptsActions.h"
 
@@ -7,23 +10,28 @@
 
 bool FleeFocusFireAction::Execute(Event /*event*/)
 {
-    Unit* boss = AI_VALUE2(Unit*, "find target", "shirrak");
-    if (!boss)
-        return false;
+    std::list<Creature*> targets;
+    Acore::AnyUnitInObjectRangeCheck u_check(bot, 20.0f);
+    Acore::CreatureListSearcher<Acore::AnyUnitInObjectRangeCheck> searcher(bot, targets, u_check);
+    Cell::VisitObjects(bot, searcher, 20.0f);
 
-    std::list<ObjectGuid> objects = AI_VALUE(std::list<ObjectGuid>, "nearest dynamic objects");
-    for (auto const& guid : objects)
+    for (Creature* flare : targets)
     {
-        DynamicObject* obj = bot->GetMap()->GetDynamicObject(guid);
-        if (obj && obj->GetSpellId() == 32286) // SPELL_FOCUS_FIRE_VISUAL
+        if (flare && flare->GetEntry() == NPC_FOCUS_FIRE)
         {
-            float radius = obj->GetRadius();
-            if (bot->GetDistance2d(obj) <= (radius + 2.0f))
+            float distance = bot->GetDistance2d(flare);
+            const float safeDistance = 15.0f; 
+
+            if (distance < safeDistance)
             {
-            bot->InterruptNonMeleeSpells(false);
-            return FleePosition(obj->GetPosition(), 20.0f, 3000U);
+                
+                bot->AttackStop();
+                bot->InterruptNonMeleeSpells(false);
+                
+                return FleePosition(flare->GetPosition(), 20.0f);
             }
         }
     }
+
     return false;
 }
