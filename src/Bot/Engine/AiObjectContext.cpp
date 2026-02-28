@@ -26,6 +26,8 @@
 #include "WorldPacketActionContext.h"
 #include "WorldPacketTriggerContext.h"
 #include "Ai/Dungeon/DungeonStrategyContext.h"
+#include "Ai/Dungeon/TbcDungeonActionContext.h"
+#include "Ai/Dungeon/TbcDungeonTriggerContext.h"
 #include "Ai/Dungeon/WotlkDungeonActionContext.h"
 #include "Ai/Dungeon/WotlkDungeonTriggerContext.h"
 #include "Ai/Raid/RaidStrategyContext.h"
@@ -114,6 +116,7 @@ void AiObjectContext::BuildSharedActionContexts(SharedNamedObjectContextList<Act
     actionContexts.Add(new RaidAq20ActionContext());
     actionContexts.Add(new RaidMcActionContext());
     actionContexts.Add(new RaidBwlActionContext());
+    actionContexts.Add(new TbcDungeonAuchenaiCryptsActionContext());
     actionContexts.Add(new RaidKarazhanActionContext());
     actionContexts.Add(new RaidMagtheridonActionContext());
     actionContexts.Add(new RaidGruulsLairActionContext());
@@ -149,6 +152,7 @@ void AiObjectContext::BuildSharedTriggerContexts(SharedNamedObjectContextList<Tr
     triggerContexts.Add(new RaidAq20TriggerContext());
     triggerContexts.Add(new RaidMcTriggerContext());
     triggerContexts.Add(new RaidBwlTriggerContext());
+    triggerContexts.Add(new TbcDungeonAuchenaiCryptsTriggerContext());
     triggerContexts.Add(new RaidKarazhanTriggerContext());
     triggerContexts.Add(new RaidMagtheridonTriggerContext());
     triggerContexts.Add(new RaidGruulsLairTriggerContext());
