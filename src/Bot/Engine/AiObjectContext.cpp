@@ -45,6 +45,8 @@
 #include "Ai/Raid/GruulsLair/RaidGruulsLairTriggerContext.h"
 #include "Ai/Raid/SerpentshrineCavern/RaidSSCActionContext.h"
 #include "Ai/Raid/SerpentshrineCavern/RaidSSCTriggerContext.h"
+#include "Ai/Raid/ZulAman/RaidZulAmanActionContext.h"
+#include "Ai/Raid/ZulAman/RaidZulAmanTriggerContext.h"
 #include "Ai/Raid/EyeOfEternity/RaidEoEActionContext.h"
 #include "Ai/Raid/EyeOfEternity/RaidEoETriggerContext.h"
 #include "Ai/Raid/VaultOfArchavon/RaidVoAActionContext.h"
@@ -118,9 +120,10 @@ void AiObjectContext::BuildSharedActionContexts(SharedNamedObjectContextList<Act
     actionContexts.Add(new RaidBwlActionContext());
     actionContexts.Add(new TbcDungeonAuchenaiCryptsActionContext());
     actionContexts.Add(new RaidKarazhanActionContext());
-    actionContexts.Add(new RaidMagtheridonActionContext());
     actionContexts.Add(new RaidGruulsLairActionContext());
+    actionContexts.Add(new RaidMagtheridonActionContext());
     actionContexts.Add(new RaidSSCActionContext());
+    actionContexts.Add(new RaidZulAmanActionContext());
     actionContexts.Add(new RaidOsActionContext());
     actionContexts.Add(new RaidEoEActionContext());
     actionContexts.Add(new RaidVoAActionContext());
@@ -154,9 +157,10 @@ void AiObjectContext::BuildSharedTriggerContexts(SharedNamedObjectContextList<Tr
     triggerContexts.Add(new RaidBwlTriggerContext());
     triggerContexts.Add(new TbcDungeonAuchenaiCryptsTriggerContext());
     triggerContexts.Add(new RaidKarazhanTriggerContext());
-    triggerContexts.Add(new RaidMagtheridonTriggerContext());
     triggerContexts.Add(new RaidGruulsLairTriggerContext());
+    triggerContexts.Add(new RaidMagtheridonTriggerContext());
     triggerContexts.Add(new RaidSSCTriggerContext());
+    triggerContexts.Add(new RaidZulAmanTriggerContext());
     triggerContexts.Add(new RaidOsTriggerContext());
     triggerContexts.Add(new RaidEoETriggerContext());
     triggerContexts.Add(new RaidVoATriggerContext());
