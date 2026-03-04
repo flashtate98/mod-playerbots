@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2016+ AzerothCore <www.azerothcore.org>, released under GNU AGPL v3 license, you may redistribute it
+ * and/or modify it under version 3 of the License, or (at your option), any later version.
+ */
+
 #include "RaidZulAmanTriggers.h"
 #include "RaidZulAmanHelpers.h"
 #include "RaidZulAmanActions.h"
@@ -26,10 +31,8 @@ bool AkilzonPullingBossTrigger::IsActive()
 
 bool AkilzonBossEngagedByTanksTrigger::IsActive()
 {
-    if (!botAI->IsTank(bot))
-        return false;
-
-    if (!AI_VALUE2(Unit*, "find target", "akil'zon"))
+    if (!botAI->IsTank(bot) ||
+        !AI_VALUE2(Unit*, "find target", "akil'zon"))
         return false;
 
     return !GetElectricalStormTarget(bot);
@@ -37,10 +40,8 @@ bool AkilzonBossEngagedByTanksTrigger::IsActive()
 
 bool AkilzonBossCastsStaticDisruptionTrigger::IsActive()
 {
-    if (!botAI->IsRanged(bot))
-        return false;
-
-    if (!AI_VALUE2(Unit*, "find target", "akil'zon"))
+    if (!botAI->IsRanged(bot) ||
+        !AI_VALUE2(Unit*, "find target", "akil'zon"))
         return false;
 
     return !GetElectricalStormTarget(bot);
@@ -91,10 +92,8 @@ bool JanalaiPullingBossTrigger::IsActive()
 
 bool JanalaiBossEngagedByTanksTrigger::IsActive()
 {
-    if (!botAI->IsTank(bot))
-        return false;
-
-    if (!AI_VALUE2(Unit*, "find target", "jan'alai"))
+    if (!botAI->IsTank(bot) ||
+        !AI_VALUE2(Unit*, "find target", "jan'alai"))
         return false;
 
     return !HasFireBombNearby(botAI, bot);
@@ -102,13 +101,9 @@ bool JanalaiBossEngagedByTanksTrigger::IsActive()
 
 bool JanalaiBossCastsFlameBreathTrigger::IsActive()
 {
-    if (!botAI->IsRanged(bot))
-        return false;
-
-    if (!AI_VALUE2(Unit*, "find target", "jan'alai"))
-        return false;
-
-    if (AI_VALUE2(Unit*, "find target", "amani dragonhawk hatchling"))
+    if (!botAI->IsRanged(bot) ||
+        !AI_VALUE2(Unit*, "find target", "jan'alai") ||
+        AI_VALUE2(Unit*, "find target", "amani dragonhawk hatchling"))
         return false;
 
     return !HasFireBombNearby(botAI, bot);
@@ -116,18 +111,14 @@ bool JanalaiBossCastsFlameBreathTrigger::IsActive()
 
 bool JanalaiBossSummoningFireBombsTrigger::IsActive()
 {
-    if (!AI_VALUE2(Unit*, "find target", "jan'alai"))
-        return false;
-
-    return HasFireBombNearby(botAI, bot);
+    return AI_VALUE2(Unit*, "find target", "jan'alai") &&
+           HasFireBombNearby(botAI, bot);
 }
 
 bool JanalaiAmanishiHatchersSpawnedTrigger::IsActive()
 {
-    if (!botAI->IsRangedDps(bot))
-        return false;
-
-    if (!AI_VALUE2(Unit*, "find target", "jan'alai"))
+    if (!botAI->IsRangedDps(bot) ||
+        !AI_VALUE2(Unit*, "find target", "jan'alai"))
         return false;
 
     return bot->FindNearestCreature(NPC_AMANISHI_HATCHER, 40.0f);
@@ -182,10 +173,10 @@ bool HexLordMalacrassDeterminingKillOrderTrigger::IsActive()
 bool HexLordMalacrassBossIsChannelingWhirlwindTrigger::IsActive()
 {
     Unit* malacrass = AI_VALUE2(Unit*, "find target", "hex lord malacrass");
-    if (!malacrass)
+    if (!malacrass || !malacrass->HasAura(SPELL_HEX_LORD_WHIRLWIND))
         return false;
 
-    return !botAI->IsMainTank(bot) && malacrass->HasAura(SPELL_HEX_LORD_WHIRLWIND);
+    return !(botAI->IsTank(bot) && malacrass->GetVictim() == bot);
 }
 
 bool HexLordMalacrassBossHasSpellReflectionTrigger::IsActive()
@@ -199,11 +190,8 @@ bool HexLordMalacrassBossHasSpellReflectionTrigger::IsActive()
 
 bool HexLordMalacrassBossPlacedFreezingTrapTrigger::IsActive()
 {
-    Unit* malacrass = AI_VALUE2(Unit*, "find target", "hex lord malacrass");
-    if (!malacrass)
-        return false;
-
-    return bot->FindNearestGameObject(GO_FREEZING_TRAP, 20.0f, true);
+    return AI_VALUE2(Unit*, "find target", "hex lord malacrass") &&
+           bot->FindNearestGameObject(GO_FREEZING_TRAP, 20.0f, true);
 }
 
 // Zul'jin
@@ -241,7 +229,7 @@ bool ZuljinBossIsChannelingWhirlwindInTrollFormTrigger::IsActive()
     if (!zuljin || !zuljin->HasAura(SPELL_ZULJIN_WHIRLWIND))
         return false;
 
-    return (botAI->IsTank(bot) && zuljin->GetVictim() == bot);
+    return !(botAI->IsTank(bot) && zuljin->GetVictim() == bot);
 }
 
 bool ZuljinBossIsSummoningCyclonesInEagleFormTrigger::IsActive()

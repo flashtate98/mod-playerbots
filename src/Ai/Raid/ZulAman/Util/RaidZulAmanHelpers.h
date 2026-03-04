@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2016+ AzerothCore <www.azerothcore.org>, released under GNU AGPL v3 license, you may redistribute it
+ * and/or modify it under version 3 of the License, or (at your option), any later version.
+ */
+
 #ifndef _PLAYERBOT_RAIDZULAMANHELPERS_H_
 #define _PLAYERBOT_RAIDZULAMANHELPERS_H_
 
@@ -28,7 +33,7 @@ namespace ZulAmanHelpers
         SPELL_SHAPE_OF_THE_EAGLE        = 42606,
         SPELL_SHAPE_OF_THE_LYNX         = 42607,
         SPELL_SHAPE_OF_THE_DRAGONHAWK   = 42608,
-        // SPELL_CLAW_RAGE              = 43149,
+        // SPELL_CLAW_RAGE              = 43149, // Requires getting Zul'jin's bossai
 
         // Hunter
         SPELL_MISDIRECTION              = 35079,
@@ -42,7 +47,6 @@ namespace ZulAmanHelpers
 
         // Jan'alai <Dragonhawk Avatar>
         NPC_AMANI_DRAGONHAWK_HATCHLING  = 23598,
-        // NPC_EGG                      = 23817,
         NPC_AMANISHI_HATCHER            = 23818,
         NPC_FIRE_BOMB                   = 23920,
 

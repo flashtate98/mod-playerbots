@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2016+ AzerothCore <www.azerothcore.org>, released under GNU AGPL v3 license, you may redistribute it
+ * and/or modify it under version 3 of the License, or (at your option), any later version.
+ */
+
 #include "RaidZulAmanMultipliers.h"
 #include "RaidZulAmanActions.h"
 #include "RaidZulAmanHelpers.h"
@@ -176,8 +181,7 @@ float JanalaiDelayBloodlustAndHeroismMultiplier::GetValue(Action* action)
     if (bot->getClass() != CLASS_SHAMAN)
         return 1.0f;
 
-    Unit* janalai = AI_VALUE2(Unit*, "find target", "jan'alai");
-    if (!janalai)
+    if (!AI_VALUE2(Unit*, "find target", "jan'alai"))
         return 1.0f;
 
     if (AI_VALUE2(Unit*, "find target", "amani dragonhawk hatchling"))
@@ -201,23 +205,9 @@ float HalazziDisableTankActionsMultiplier::GetValue(Action* action)
     if (dynamic_cast<TankFaceAction*>(action))
         return 0.0f;
 
-    if (bot->GetVictim() == nullptr)
-        return 1.0f;
-
-    /* if (!botAI->IsMainTank(bot))
-        return 1.0f;
-
-    if (!AI_VALUE2(Unit*, "find target", "spirit of the lynx"))
-        return 1.0f; */
-
-    if (dynamic_cast<TankAssistAction*>(action))
+    if (bot->GetVictim() != nullptr &&
+        dynamic_cast<TankAssistAction*>(action))
         return 0.0f;
-
-    /* if (dynamic_cast<CastTauntAction*>(action) ||
-        dynamic_cast<CastGrowlAction*>(action) ||
-        dynamic_cast<CastHandOfReckoningAction*>(action) ||
-        dynamic_cast<CastDarkCommandAction*>(action))
-        return 0.0f; */
 
     return 1.0f;
 }
@@ -269,9 +259,7 @@ float HexLordMalacrassStopAttackingDuringSpellReflectionMultiplier::GetValue(Act
     if (castSpellAction->getThreatType() == Action::ActionThreatType::Aoe ||
         (bot->GetVictim() == malacrass &&
          castSpellAction->getThreatType() == Action::ActionThreatType::Single))
-    {
         return 0.0f;
-    }
 
     return 1.0f;
 }
