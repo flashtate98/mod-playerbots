@@ -51,6 +51,8 @@
 #include "Ai/Raid/TempestKeep/RaidTempestKeepTriggerContext.h"
 #include "Ai/Raid/HyjalSummit/RaidHyjalSummitActionContext.h"
 #include "Ai/Raid/HyjalSummit/RaidHyjalSummitTriggerContext.h"
+#include "Ai/Raid/BlackTemple/RaidBlackTempleActionContext.h"
+#include "Ai/Raid/BlackTemple/RaidBlackTempleTriggerContext.h"
 #include "Ai/Raid/EyeOfEternity/RaidEoEActionContext.h"
 #include "Ai/Raid/EyeOfEternity/RaidEoETriggerContext.h"
 #include "Ai/Raid/VaultOfArchavon/RaidVoAActionContext.h"
@@ -130,6 +132,7 @@ void AiObjectContext::BuildSharedActionContexts(SharedNamedObjectContextList<Act
     actionContexts.Add(new RaidZulAmanActionContext());
     actionContexts.Add(new RaidTempestKeepActionContext());
     actionContexts.Add(new RaidHyjalSummitActionContext());
+    actionContexts.Add(new RaidBlackTempleActionContext());
     actionContexts.Add(new RaidOsActionContext());
     actionContexts.Add(new RaidEoEActionContext());
     actionContexts.Add(new RaidVoAActionContext());
@@ -169,6 +172,7 @@ void AiObjectContext::BuildSharedTriggerContexts(SharedNamedObjectContextList<Tr
     triggerContexts.Add(new RaidZulAmanTriggerContext());
     triggerContexts.Add(new RaidTempestKeepTriggerContext());
     triggerContexts.Add(new RaidHyjalSummitTriggerContext());
+    triggerContexts.Add(new RaidBlackTempleTriggerContext());
     triggerContexts.Add(new RaidOsTriggerContext());
     triggerContexts.Add(new RaidEoETriggerContext());
     triggerContexts.Add(new RaidVoATriggerContext());
