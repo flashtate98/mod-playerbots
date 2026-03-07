@@ -1565,7 +1565,7 @@ void PlayerbotAI::ApplyInstanceStrategies(uint32 mapId, bool tellMaster)
         case 550:
             strategyName = "tempestkeep";  // Tempest Keep: The Eye
             break;
-        case 565:
+        case 564:
             strategyName = "blacktemple";  // Black Temple
             break;
         case 565:
