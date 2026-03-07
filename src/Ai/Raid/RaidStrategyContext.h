@@ -8,6 +8,7 @@
 #include "RaidKarazhanStrategy.h"
 #include "RaidGruulsLairStrategy.h"
 #include "RaidMagtheridonStrategy.h"
+#include "RaidNaxxStrategy.h"
 #include "RaidSSCStrategy.h"
 #include "RaidZulAmanStrategy.h"
 #include "RaidTempestKeepStrategy.h"
@@ -31,6 +32,7 @@ public:
         creators["karazhan"] = &RaidStrategyContext::karazhan;
         creators["gruulslair"] = &RaidStrategyContext::gruulslair;
         creators["magtheridon"] = &RaidStrategyContext::magtheridon;
+        creators["naxx"] = &RaidStrategyContext::naxx;
         creators["ssc"] = &RaidStrategyContext::ssc;
         creators["zulaman"] = &RaidStrategyContext::zulaman;
         creators["tempestkeep"] = &RaidStrategyContext::tempestkeep;
@@ -51,6 +53,7 @@ private:
     static Strategy* karazhan(PlayerbotAI* botAI) { return new RaidKarazhanStrategy(botAI); }
     static Strategy* gruulslair(PlayerbotAI* botAI) { return new RaidGruulsLairStrategy(botAI); }
     static Strategy* magtheridon(PlayerbotAI* botAI) { return new RaidMagtheridonStrategy(botAI); }
+    static Strategy* naxx(PlayerbotAI* botAI) { return new RaidNaxxStrategy(botAI); }
     static Strategy* ssc(PlayerbotAI* botAI) { return new RaidSSCStrategy(botAI); }
     static Strategy* zulaman(PlayerbotAI* botAI) { return new RaidZulAmanStrategy(botAI); }
     static Strategy* tempestkeep(PlayerbotAI* botAI) { return new RaidTempestKeepStrategy(botAI); }
