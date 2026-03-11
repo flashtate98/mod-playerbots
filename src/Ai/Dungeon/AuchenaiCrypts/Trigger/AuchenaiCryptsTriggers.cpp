@@ -13,16 +13,14 @@ bool FleeFocusFireTrigger::IsActive()
     if (!boss)
         return false;
 
-    std::list<Creature*> targets;
-    Acore::AnyUnitInObjectRangeCheck u_check(bot, 20.0f);
-    Acore::CreatureListSearcher<Acore::AnyUnitInObjectRangeCheck> searcher(bot, targets, u_check);
-    Cell::VisitObjects(bot, searcher, 20.0f);
+   constexpr float searchRadius = 20.0f;
+        std::list<Creature*> creatureList;
+        bot->GetCreatureListWithEntryInGrid(creatureList, NPC_FOCUS_FIRE, 20.0f);
 
-    for (Creature* creature : targets)
+    for (Creature* flare : creatureList)
     {
-        if (creature && creature->GetEntry() == NPC_FOCUS_FIRE) // Focus Fire NPC ID
+        if (flare && flare->IsALive())
             return true;
-    
     }
     return false;
 }

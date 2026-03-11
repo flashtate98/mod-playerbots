@@ -11,9 +11,21 @@
 
 float FleeFocusFireMultiplier::GetValue(Action* action)
 {
-   Unit* boss = AI_VALUE2(Unit*, "find target", "shirrak the dead watcher");
-    if (!boss)
-        return 1.0f;
+   constexpr float searchRadius = 20.0f;
+        std::list<Creature*> creatureList;
+        bot->GetCreatureListWithEntryInGrid(creatureList, NPC_FOCUS_FIRE, 20.0f);
 
-    // gotta figure out how to do this mutiplier without constantly doing creature searches in every function, if even possible.
+    for (Creature* flare : creatureList)
+    {
+        if (flare && flare->IsALive())
+            return 1.0f;
+    }
+    
+    if (dynamic_cast<CastReachTargetSpellAction*>(action) ||
+        dynamic_cast<CastKillingSpreeAction*>(action) ||
+        dynamic_cast<ReachTargetAction*>(action) ||
+        dynamic_cast<AttackAction*>(action))
+        return 0.0f;
+
+    return 1.0f;
 }
