@@ -524,25 +524,15 @@ bool IllidanStormrageBossCastsFlameCrashTrigger::IsActive()
 
 bool IllidanStormrageBotHasParasiticShadowfiendTrigger::IsActive()
 {
-    if (!bot->HasAura(SPELL_PARASITIC_SHADOWFIEND))
+    if (botAI->IsMelee(bot))
         return false;
 
-    if (botAI->IsMainTank(bot))
+    if (!bot->HasAura(SPELL_PARASITIC_SHADOWFIEND_1) &&
+        !bot->HasAura(SPELL_PARASITIC_SHADOWFIEND_2))
         return false;
 
     Unit* illidan = AI_VALUE2(Unit*, "find target", "illidan stormrage");
-    if (!illidan)
-        return false;
-
-    int phase = GetIllidanPhase(illidan);
-
-    if (phase == 2 || phase == 4)
-        return false;
-
-    if (botAI->IsRanged(bot) && (phase == 3 || phase == 5))
-        return false;
-
-    return true;
+    return illidan && GetIllidanPhase(illidan) == 1;
 }
 
 bool IllidanStormrageBossSummonedFlamesOfAzzinothTrigger::IsActive()
@@ -634,15 +624,24 @@ bool IllidanStormrageBossTransformsIntoDemonTrigger::IsActive()
 
 bool IllidanStormrageBossSpawnsAddsTrigger::IsActive()
 {
-    if (!botAI->IsRangedDps(bot))
+    if (botAI->IsHeal(bot))
         return false;
 
     Unit* illidan = AI_VALUE2(Unit*, "find target", "illidan stormrage");
-    return illidan && illidan->GetHealth() > 1;
+    if (!illidan || illidan->GetHealth() == 1)
+        return false;
+
+    if (botAI->IsTank(bot) && GetIllidanPhase(illidan) != 4)
+        return false;
+
+    return true;
 }
 
 bool IllidanStormrageNeedToManageDpsTimerTrigger::IsActive()
 {
+    if (!botAI->IsDps(bot))
+        return false;
+
     Unit* illidan = AI_VALUE2(Unit*, "find target", "illidan stormrage");
     if (!illidan || illidan->GetHealth() == 1)
         return false;

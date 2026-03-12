@@ -353,31 +353,6 @@ float IllidariCouncilDisableArcaneShotOnZerevorMultiplier::GetValue(Action* acti
     return 1.0f;
 }
 
-float IllidariCouncilManageInterruptsMultiplier::GetValue(Action* action)
-{
-    if (bot->getClass() != CLASS_ROGUE &&
-        bot->getClass() != CLASS_SHAMAN &&
-        bot->getClass() != CLASS_WARRIOR)
-        return 1.0f;
-
-    Unit* malande = AI_VALUE2(Unit*, "find target", "lady malande");
-    if (!malande)
-        return 1.0f;
-
-    if (malande->HasAura(SPELL_BLESSING_OF_PROTECTION) &&
-        (dynamic_cast<CastKickAction*>(action) ||
-         dynamic_cast<CastPummelAction*>(action) ||
-         dynamic_cast<CastShieldBashAction*>(action)))
-        return 0.0f;
-
-    if (malande->HasAura(SPELL_BLESSING_OF_SPELL_WARDING) &&
-        (dynamic_cast<CastWindShearAction*>(action) ||
-         dynamic_cast<CastWindShearOnEnemyHealerAction*>(action)))
-        return 0.0f;
-
-    return 1.0f;
-}
-
 float IllidariCouncilWaitForDpsMultiplier::GetValue(Action* action)
 {
     if (botAI->IsMainTank(bot) ||
@@ -501,24 +476,34 @@ float IllidanStormrageDisableDefaultTargetingMultiplier::GetValue(Action* action
     if (bot->GetVictim() == nullptr)
         return 1.0f;
 
-    if (botAI->IsHeal(bot))
-        return 1.0f;
-
     Unit* illidan = AI_VALUE2(Unit*, "find target", "illidan stormrage");
     if (!illidan || illidan->GetHealth() == 1)
         return 1.0f;
 
-    if (dynamic_cast<TankAssistAction*>(action) /* || dynamic_cast<DpsAssistAction*>(action)*/)
+    if (dynamic_cast<TankAssistAction*>(action))
         return 0.0f;
 
-    if (botAI->IsRanged(bot))
+    int phase = GetIllidanPhase(illidan);
+
+    if (phase == 4 && dynamic_cast<DpsAssistAction*>(action))
+        return 0.0f;
+
+    if (botAI->IsRangedDps(bot))
     {
-        if (GetIllidanPhase(illidan) != 2)
+        if (phase != 2)
             context->GetValue<bool>("neglect threat")->Set(true);
 
         if (dynamic_cast<DpsAssistAction*>(action))
             return 0.0f;
     }
+
+    constexpr float searchRadius = 40.0f;
+    Unit* shadowDemon = bot->FindNearestCreature(NPC_SHADOW_DEMON, searchRadius);
+    Unit* shadowfiend = bot->FindNearestCreature(NPC_PARASITIC_SHADOWFIEND, searchRadius);
+    if (((shadowDemon && bot->GetTarget() == shadowDemon->GetGUID()) ||
+         (shadowfiend && bot->GetTarget() == shadowfiend->GetGUID())) &&
+        dynamic_cast<CastDebuffSpellOnAttackerAction*>(action))
+        return 0.0f;
 
     return 1.0f;
 }
@@ -545,8 +530,15 @@ float IllidanStormrageControlNonTankMovementMultiplier::GetValue(Action* action)
     int phase = GetIllidanPhase(illidan);
 
     if (phase == 2 &&
-        (dynamic_cast<CastKillingSpreeAction*>(action) ||
-         dynamic_cast<ReachTargetAction*>(action)))
+        (dynamic_cast<SetBehindTargetAction*>(action) ||
+         dynamic_cast<CastKillingSpreeAction*>(action) ||
+         dynamic_cast<ReachTargetAction*>(action) ||
+         dynamic_cast<CastReachTargetSpellAction*>(action) ||
+         dynamic_cast<AvoidAoeAction*>(action)))
+        return 0.0f;
+
+    if (phase == 4 && botAI->IsHeal(bot) &&
+        dynamic_cast<ReachTargetAction*>(action))
         return 0.0f;
 
     return 1.0f;
@@ -569,7 +561,7 @@ float IllidanStormrageWaitForDpsMultiplier::GetValue(Action* action)
     if ((phase == 1 || phase == 3) &&
         !botAI->IsMainTank(bot))
     {
-        constexpr uint8 humanoidPhaseDpsWaitSeconds = 2;
+        constexpr uint8 humanoidPhaseDpsWaitSeconds = 3;
         auto it = illidanBossDpsWaitTimer.find(instanceId);
 
         if ((it == illidanBossDpsWaitTimer.end() || (now - it->second) < humanoidPhaseDpsWaitSeconds) &&
