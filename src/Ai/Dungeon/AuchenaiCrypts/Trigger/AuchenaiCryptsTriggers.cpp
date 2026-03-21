@@ -1,11 +1,15 @@
 #include "Playerbots.h"
-#include "GridNotifiers.h"
-#include "GridNotifiersImpl.h"
-#include "Cell.h"
-#include "CellImpl.h"
 #include "AuchenaiCryptsTriggers.h"
 #include "AiObject.h"
 #include "AiObjectContext.h"
+
+// Shirrak the Dead Watcher
+
+bool ShirrakTankPositionBossTrigger::IsActive()
+{
+    return botAI->IsTank(bot) &&
+            AI_VALUE2(Unit*, "find target", "shirrak the dead watcher");
+}
 
 bool FleeFocusFireTrigger::IsActive()
 {
@@ -19,7 +23,7 @@ bool FleeFocusFireTrigger::IsActive()
 
     for (Creature* flare : creatureList)
     {
-        if (flare && flare->IsALive())
+        if (flare && flare->IsAlive())
             return true;
     }
     return false;

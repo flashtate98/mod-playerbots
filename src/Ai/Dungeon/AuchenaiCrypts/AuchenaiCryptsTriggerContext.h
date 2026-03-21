@@ -10,10 +10,18 @@ class TbcDungeonAuchenaiCryptsTriggerContext : public NamedObjectContext<Trigger
     public:
         TbcDungeonAuchenaiCryptsTriggerContext()
         {
-            creators["flee focus fire"] = &TbcDungeonAuchenaiCryptsTriggerContext::flee_focus_fire;
+            creators["shirrak tank position"] = 
+                &TbcDungeonAuchenaiCryptsTriggerContext::shirrak_tank_position;
+
+            creators["flee focus fire"] = 
+                &TbcDungeonAuchenaiCryptsTriggerContext::flee_focus_fire;
         }
     private:
-        static Trigger* flee_focus_fire(PlayerbotAI* botAI) { return new FleeFocusFireTrigger(botAI); }
+        static Trigger* shirrak_tank_position(
+            PlayerbotAI* botAI) { return new ShirrakTankPositionBossTrigger(botAI); }
+            
+        static Trigger* flee_focus_fire(
+            PlayerbotAI* botAI) { return new FleeFocusFireTrigger(botAI); }
 };
 
 #endif
