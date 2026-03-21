@@ -40,6 +40,7 @@ void AiObjectContext::BuildSharedActionContexts(SharedNamedObjectContextList<Act
     actionContexts.Add(new RaidTempestKeepActionContext());
     actionContexts.Add(new RaidHyjalSummitActionContext());
     actionContexts.Add(new RaidBlackTempleActionContext());
+    actionContexts.Add(new RaidNaxxActionContext());
     actionContexts.Add(new RaidOsActionContext());
     actionContexts.Add(new RaidEoEActionContext());
     actionContexts.Add(new RaidVoAActionContext());
