@@ -138,6 +138,14 @@ public:
     bool Execute(Event event) override;
 };
 
+class KazrogalCastShadowProtectionSpellAction : public Action
+{
+public:
+    KazrogalCastShadowProtectionSpellAction(
+        PlayerbotAI* botAI) : Action(botAI, "kaz'rogal cast shadow protection spell") {}
+    bool Execute(Event event) override;
+};
+
 // Azgalor
 
 class AzgalorMisdirectBossToMainTankAction : public AttackAction
@@ -206,12 +214,16 @@ public:
     bool Execute(Event event) override;
 };
 
-class ArchimondeCastFearWardOnMainTankAction : public Action
+class ArchimondeCastFearImmunitySpellAction : public Action
 {
 public:
-    ArchimondeCastFearWardOnMainTankAction(
-        PlayerbotAI* botAI) : Action(botAI, "archimonde cast fear ward on main tank") {}
+    ArchimondeCastFearImmunitySpellAction(
+        PlayerbotAI* botAI) : Action(botAI, "archimonde cast fear immunity spell") {}
     bool Execute(Event event) override;
+
+private:
+    bool CastFearWardOnMainTank();
+    bool UseTremorTotemStrategy();
 };
 
 class ArchimondeSpreadToAvoidAirBurstAction : public MovementAction
@@ -222,24 +234,12 @@ public:
     bool Execute(Event event) override;
 };
 
-struct DoomfireLine
-{
-    Position start;
-    Position end;
-};
-
 class ArchimondeAvoidDoomfireAction : public MovementAction
 {
 public:
     ArchimondeAvoidDoomfireAction(
         PlayerbotAI* botAI) : MovementAction(botAI, "archimonde avoid doomfire") {}
     bool Execute(Event event) override;
-
-private:
-    float DistanceToDoomfireLine(const Position& testPosition,
-        const Position& lineStartPosition, const Position& lineEndPosition);
-    Position FindSafePositionFromDoomfires(
-        Player* bot, const std::vector<DoomfireLine>& lines, float hazardWidth);
 };
 
 class ArchimondeRemoveDoomfireDotAction : public Action
