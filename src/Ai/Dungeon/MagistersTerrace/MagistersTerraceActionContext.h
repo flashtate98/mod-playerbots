@@ -12,7 +12,7 @@ public:
     {
         // Trash
         creators["avoid magic dampening field"] =
-            &TbcDungeonMagistersTerraceContext::avoid_magic_dampening_field;
+            &TbcDungeonMagistersTerraceActionContext::avoid_magic_dampening_field;
     }
 private:
     // Trash

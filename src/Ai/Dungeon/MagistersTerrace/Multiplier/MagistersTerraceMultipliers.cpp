@@ -9,7 +9,7 @@
 
 // Trash
 
-class AvoidMagicDampeningFieldMultiplier::GetValue(Action* action)
+float AvoidMagicDampeningFieldMultiplier::GetValue(Action* action)
 {
     if (bot->HasAura((uint32)MagistersTerraceIDs::MAGIC_DAMPENING_FIELD) &&
         dynamic_cast<MovementAction*>(action) &&
