@@ -3,6 +3,7 @@
 
 #include "Strategy.h"
 #include "AuchenaiCrypts/Strategy/AuchenaiCryptsStrategy.h"
+#include "MagistersTerrace/Strategy/MagistersTerraceStrategy.h"
 #include "UtgardeKeep/Strategy/UtgardeKeepStrategy.h"
 #include "Nexus/Strategy/NexusStrategy.h"
 #include "AzjolNerub/Strategy/AzjolNerubStrategy.h"
@@ -46,6 +47,7 @@ class DungeonStrategyContext : public NamedObjectContext<Strategy>
 
             // Burning Crusade
             creators["tbc-ac"] = &DungeonStrategyContext::tbc_ac;           // Auchindoun: Auchenai Crypts
+            creators["tbc-mgt"] = &DungeonStrategyContext::tbc_mgt;         // Magisters Terrace
 
             // Wrath of the Lich King
             creators["wotlk-uk"] = &DungeonStrategyContext::wotlk_uk;       // Utgarde Keep
@@ -67,6 +69,7 @@ class DungeonStrategyContext : public NamedObjectContext<Strategy>
         }
     private:
         static Strategy* tbc_ac(PlayerbotAI* botAI) { return new TbcDungeonAuchenaiCryptsStrategy(botAI); }
+        static Strategy* tbc_mgt(PlayerbotAI* botAI) { return new TbcDungeonMagistersTerraceStrategy(botAI); }
         static Strategy* wotlk_uk(PlayerbotAI* botAI) { return new WotlkDungeonUKStrategy(botAI); }
         static Strategy* wotlk_nex(PlayerbotAI* botAI) { return new WotlkDungeonNexStrategy(botAI); }
         static Strategy* wotlk_an(PlayerbotAI* botAI) { return new WotlkDungeonANStrategy(botAI); }
