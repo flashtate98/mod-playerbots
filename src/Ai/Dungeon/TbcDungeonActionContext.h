@@ -3,5 +3,6 @@
 
 #include "BFActionContext.h"
 #include "ACActionContext.h"
+#include "HRActionContext.h"
 
 #endif

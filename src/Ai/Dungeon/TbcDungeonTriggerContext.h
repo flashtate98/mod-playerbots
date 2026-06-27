@@ -3,5 +3,6 @@
 
 #include "BFTriggerContext.h"
 #include "ACTriggerContext.h"
+#include "HRTriggerContext.h"
 
 #endif

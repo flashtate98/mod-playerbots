@@ -2,6 +2,7 @@
 #define PLAYERBOTS_DUNGEONSTRATEGYCONTEXT_H
 
 #include "Strategy.h"
+#include "HRStrategy.h"
 #include "ACStrategy.h"
 #include "UKStrategy.h"
 #include "NexStrategy.h"
@@ -47,7 +48,6 @@ class DungeonStrategyContext : public NamedObjectContext<Strategy>
             // Burning Crusade
             creators["tbc-bf"] = &DungeonStrategyContext::tbc_bf;          // Hellfire Citadel: Blood Furnace
             creators["tbc-ac"] = &DungeonStrategyContext::tbc_ac;           // Auchindoun: Auchenai Crypts
-
             // Wrath of the Lich King
             creators["wotlk-uk"] = &DungeonStrategyContext::wotlk_uk;       // Utgarde Keep
             creators["wotlk-nex"] = &DungeonStrategyContext::wotlk_nex;     // The Nexus
