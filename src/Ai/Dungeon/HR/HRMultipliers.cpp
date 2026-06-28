@@ -5,10 +5,8 @@
 
 #include "HRMultipliers.h"
 #include "HRActions.h"
-#include "HRTriggers.h"
 #include "MovementActions.h"
 #include "ReachTargetActions.h"
-#include "FollowActions.h"
 #include "Playerbots.h"
 #include "RaidBossHelpers.h"
 

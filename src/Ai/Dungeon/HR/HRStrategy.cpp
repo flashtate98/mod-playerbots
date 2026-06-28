@@ -17,7 +17,7 @@ void TbcDungeonHellfireRampartsStrategy::InitTriggers(std::vector<TriggerNode*> 
         NextAction("omor treachery aura flee from players", ACTION_EMERGENCY + 1)}));
 
     triggers.push_back(new TriggerNode("omor ranged spread", {
-        NextAction("omor ranged spread", ACTION_RAID + 1)}));
+        NextAction("omor ranged spread", ACTION_RAID + 2)}));
 
     triggers.push_back(new TriggerNode("omor fiendish hound is active", {
         NextAction("omor mark fiendish hound", ACTION_RAID + 1)}));

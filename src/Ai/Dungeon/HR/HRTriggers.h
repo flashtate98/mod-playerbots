@@ -3,8 +3,8 @@
 * information; released under GNU GPL v2 license, redistribute/modify under version 2 of the License, or (at your option) any later version.
 */
 
-#ifndef PLAYERBOT_HRTRIGGERS_H
-#define PLAYERBOT_HRTRIGGERS_H
+#ifndef PLAYERBOTS_HRTRIGGERS_H
+#define PLAYERBOTS_HRTRIGGERS_H
 
 #include "Trigger.h"
 #include "GenericTriggers.h"
@@ -15,7 +15,6 @@ enum class HellfireRampartsIDs : uint32
     // Omor the Unscarred
     SPELL_TREACHEROUS_AURA                = 30695,
     SPELL_BANE_OF_TREACHERY               = 37566,
-
 };
 
 // Watchkeeper Gargolmar

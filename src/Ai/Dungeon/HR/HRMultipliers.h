@@ -3,8 +3,8 @@
 * information; released under GNU GPL v2 license, redistribute/modify under version 2 of the License, or (at your option) any later version.
 */
 
-#ifndef PLAYERBOT_HRMULTIPLIERS_H
-#define PLAYERBOT_HRMULTIPLIERS_H
+#ifndef PLAYERBOTS_HRMULTIPLIERS_H
+#define PLAYERBOTS_HRMULTIPLIERS_H
 
 #include "Multiplier.h"
 

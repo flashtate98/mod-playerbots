@@ -3,8 +3,8 @@
 * information; released under GNU GPL v2 license, redistribute/modify under version 2 of the License, or (at your option) any later version.
 */
 
-#ifndef PLAYERBOT_HRACTIONS_H
-#define PLAYERBOT_HRACTIONS_H
+#ifndef PLAYERBOTS_HRACTIONS_H
+#define PLAYERBOTS_HRACTIONS_H
 
 #include "AttackAction.h"
 #include "MovementActions.h"

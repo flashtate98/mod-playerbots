@@ -50,9 +50,8 @@ bool OmorTreacheryAuraFleeFromPlayersAction::Execute(Event /*event*/)
 bool OmorRangedSpreadAction::Execute(Event /*event*/)
 {
     const float minDistance = 15.0f;
-    Unit* nearestPlayer = GetNearestPlayerInRadius(bot, minDistance);
 
-    if (nearestPlayer)
+    if (Unit* nearestPlayer = GetNearestPlayerInRadius(bot, minDistance))
     {
         return FleePosition(nearestPlayer->GetPosition(), minDistance);
     }
@@ -83,7 +82,7 @@ bool OmorTreacheryAuraFleeFromTankAction::Execute(Event /*event*/)
         return false;
 
     constexpr float safeDistance = 15.0f;
-    constexpr float buffer = 3.0f;
+    constexpr float buffer = 1.0f;
 
     if (bot->GetDistance2d(tank) < safeDistance)
     {
@@ -105,7 +104,7 @@ bool VazrudenTankPositionBossAction::Execute(Event /*event*/)
     if (!vazruden)
         return false;
 
-    if (bot->GetVictim() != vazruden)
+    if (AI_VALUE(Unit*, "current target") != vazruden)
         return Attack(vazruden);
 
     if (vazruden->GetVictim() == bot && bot->IsWithinMeleeRange(vazruden) &&
@@ -122,7 +121,7 @@ bool VazrudenTankPositionBossAction::Execute(Event /*event*/)
             float moveX = bot->GetPositionX() + (dX / distToPosition) * moveDist;
             float moveY = bot->GetPositionY() + (dY / distToPosition) * moveDist;
 
-            return MoveTo(bot->GetMapId(), moveX, moveY, bot->GetPositionZ(), false, false,
+            return MoveTo(HR_MAP_ID, moveX, moveY, bot->GetPositionZ(), false, false,
                    false, false, MovementPriority::MOVEMENT_COMBAT, true, true);
         }
     }

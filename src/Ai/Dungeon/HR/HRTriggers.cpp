@@ -21,7 +21,7 @@ bool GargolmarHellfireWatchersAreActiveTrigger::IsActive()
 
 bool OmorTreacheryAuraTrigger::IsActive()
 {
-    return (botAI->IsHeal(bot) || botAI->IsDps(bot)) &&
+    return !botAI->IsTank(bot) &&
            (bot->HasAura(static_cast<uint32>(HellfireRampartsIDs::SPELL_BANE_OF_TREACHERY)) ||
             bot->HasAura(static_cast<uint32>(HellfireRampartsIDs::SPELL_TREACHEROUS_AURA)));
 }
