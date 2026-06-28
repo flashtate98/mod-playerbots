@@ -6,7 +6,6 @@
 
 #include "BFTriggers.h"
 #include "BFStrategy.h"
-#include "BFMultipliers.h"
 
 void TbcDungeonBloodFurnaceStrategy::InitTriggers(std::vector<TriggerNode*> &triggers)
 {

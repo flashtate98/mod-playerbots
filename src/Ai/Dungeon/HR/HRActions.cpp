@@ -1,7 +1,6 @@
 /*
 * This file is part of the mod-playerbots module for AzerothCore. See AUTHORS file for Copyright
-* information; released under GNU GPL v2 license, redistribute/modify under version 2 of the License,
-* or (at your option) any later version.
+* information; released under GNU GPL v2 license, redistribute/modify under version 2 of the License, or (at your option) any later version.
 */
 
 #include "Playerbots.h"
@@ -25,7 +24,7 @@ bool GargolmarMarkHellfireWatchersAction::Execute(Event /*event*/)
         return false;
 
     if (IsMechanicTrackerBot(botAI, bot, HR_MAP_ID, nullptr))
-            MarkTargetWithSkull(bot, watcher);
+        MarkTargetWithSkull(bot, watcher);
 
     SetRtiTarget(botAI, "skull", watcher);
 
@@ -55,8 +54,6 @@ bool OmorRangedSpreadAction::Execute(Event /*event*/)
 
     if (nearestPlayer)
     {
-        bot->AttackStop();
-        bot->InterruptNonMeleeSpells(true);
         return FleePosition(nearestPlayer->GetPosition(), minDistance);
     }
 
@@ -71,7 +68,7 @@ bool OmorMarkFiendishHoundAction::Execute(Event /*event*/)
         return false;
 
     if (IsMechanicTrackerBot(botAI, bot, HR_MAP_ID, nullptr))
-            MarkTargetWithSkull(bot, hound);
+        MarkTargetWithSkull(bot, hound);
 
     SetRtiTarget(botAI, "skull", hound);
 
@@ -88,7 +85,7 @@ bool OmorTreacheryAuraFleeFromTankAction::Execute(Event /*event*/)
     constexpr float safeDistance = 15.0f;
     constexpr float buffer = 3.0f;
 
-    if (bot->GetExactDist2d(tank) < safeDistance)
+    if (bot->GetDistance2d(tank) < safeDistance)
     {
         botAI->Reset();
         return MoveAway(tank, safeDistance + buffer);
@@ -112,7 +109,7 @@ bool VazrudenTankPositionBossAction::Execute(Event /*event*/)
         return Attack(vazruden);
 
     if (vazruden->GetVictim() == bot && bot->IsWithinMeleeRange(vazruden) &&
-        bot->GetHealthPct()>30.0f)
+        bot->GetHealthPct() > 30.0f)
     {
         const Position& position = VAZRUDEN_TANK_POSITION;
         float distToPosition = bot->GetExactDist2d(position.GetPositionX(),
