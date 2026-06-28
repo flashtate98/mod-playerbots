@@ -3732,7 +3732,7 @@ void PlayerbotFactory::InitMounts()
             fast = {23228, 23227, 23229};
             break;
         //RACE_VULPERA = ID 13,
-        case RACE_VULPERA:
+        case RACE_NAGA:
             slow = {6654, 6653, 580};
             fast = {23250, 23252, 23251};
             break;
