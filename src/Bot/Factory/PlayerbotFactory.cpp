@@ -3720,57 +3720,6 @@ void PlayerbotFactory::InitMounts()
             slow = {33660, 35020, 35022, 35018};
             fast = {35025, 35025, 35027};
             break;
-        // New Races
-        //RACE_GOBLIN = ID 9,
-        case RACE_GOBLIN:
-            slow = {10796, 10799, 8395};
-            fast = {23241, 23242, 23243};
-            break;
-        //RACE_VOIDELF = ID 12,
-        case RACE_FEL_ORC:
-            slow = {470, 6648, 458, 472};
-            fast = {23228, 23227, 23229};
-            break;
-        //RACE_VULPERA = ID 13,
-        case RACE_VULPERA:
-            slow = {6654, 6653, 580};
-            fast = {23250, 23252, 23251};
-            break;
-        //RACE_NIGHTBORNE = ID 14,
-        case RACE_BROKEN:
-            slow = {33660, 35020, 35022, 35018};
-            fast = {35025, 35025, 35027};
-            break;
-        //RACE_PANDAREN_HORDE = ID 15,
-        case RACE_SKELETON:
-            slow = {18990, 18989, 64657};
-            fast = {23249, 23248, 23247};
-            break;
-        //RACE_WORGEN = ID 16,
-        case RACE_VRYKUL:
-            slow = {470, 6648, 458, 472};
-            fast = {23228, 23227, 23229};
-            break;
-        //RACE_PANDAREN_ALLIANCE = ID 17,
-        case RACE_TUSKARR:
-            slow = {34406, 35711, 35710};
-            fast = {35713, 35712, 35714};
-            break;
-        //RACE_LIGHTFORGED_DRAENEI = ID 19,
-        case RACE_TAUNKA:
-            slow = {34406, 35711, 35710};
-            fast = {35713, 35712, 35714};
-            break;
-        //RACE_DEMON_HUNTER_ALLIANCE = ID 20,
-        case RACE_NORTHREND_SKELETON:
-            slow = {10789, 8394, 10793};
-            fast = {23219, 23220, 63637};
-            break;
-        //RACE_DEMON_HUNTER_HORDE = ID 21,
-        case RACE_ICE_TROLL:
-            slow = {33660, 35020, 35022, 35018};
-            fast = {35025, 35025, 35027};
-            break;
         default:
             if (bot->GetTeamId() == TEAM_HORDE)
             { // Orc mounts
