@@ -3,8 +3,8 @@
 * information; released under GNU GPL v2 license, redistribute/modify under version 2 of the License, or (at your option) any later version.
 */
 
-#ifndef PLAYERBOTS_HRTRIGGERS_H
-#define PLAYERBOTS_HRTRIGGERS_H
+#ifndef PLAYERBOTS_HFRTRIGGERS_H
+#define PLAYERBOTS_HFRTRIGGERS_H
 
 #include "Trigger.h"
 #include "GenericTriggers.h"
@@ -54,6 +54,7 @@ public:    OmorFiendishHoundIsActiveTrigger(PlayerbotAI* botAI) : Trigger(botAI,
 class OmorTankHasTreacheryAuraTrigger : public Trigger
 {
 public:    OmorTankHasTreacheryAuraTrigger(PlayerbotAI* botAI) : Trigger(botAI, "omor tank has treachery aura") {}
+
     bool IsActive() override;
 };
 
@@ -62,6 +63,13 @@ public:    OmorTankHasTreacheryAuraTrigger(PlayerbotAI* botAI) : Trigger(botAI, 
 class VazrudenTankPositionBossTrigger : public Trigger
 {
 public:    VazrudenTankPositionBossTrigger(PlayerbotAI* botAI) : Trigger(botAI, "vazruden tank position boss") {}
+
+    bool IsActive() override;
+};
+
+class VazrudenBossIsActiveTrigger : public Trigger
+{
+public:    VazrudenBossIsActiveTrigger(PlayerbotAI* botAI) : Trigger(botAI, "vazruden boss is active") {}
 
     bool IsActive() override;
 };
