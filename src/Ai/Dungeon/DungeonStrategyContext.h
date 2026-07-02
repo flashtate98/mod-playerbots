@@ -2,7 +2,6 @@
 #define PLAYERBOTS_DUNGEONSTRATEGYCONTEXT_H
 
 #include "Strategy.h"
-#include "BFStrategy.h"
 #include "HFRStrategy.h"
 #include "BFStrategy.h"
 #include "ACStrategy.h"
