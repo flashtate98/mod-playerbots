@@ -47,8 +47,8 @@ class DungeonStrategyContext : public NamedObjectContext<Strategy>
             // ...
 
             // Burning Crusade
-            creators["tbc-bf"] = &DungeonStrategyContext::tbc_bf;           // Hellfire Citadel: Blood Furnace
-            creators["tbc-hr"] = &DungeonStrategyContext::tbc_hr;           // Hellfire Citadel: Hellfire Ramparts
+            creators["tbc-hfr"] = &DungeonStrategyContext::tbc_hfr;           // Hellfire Citadel: Hellfire Ramparts
+            creators["tbc-bf"] = &DungeonStrategyContext::tbc_bf;             // Hellfire Citadel: The Blood Furnace
             creators["tbc-ac"] = &DungeonStrategyContext::tbc_ac;           // Auchindoun: Auchenai Crypts
             // Wrath of the Lich King
             creators["wotlk-uk"] = &DungeonStrategyContext::wotlk_uk;       // Utgarde Keep
@@ -69,8 +69,8 @@ class DungeonStrategyContext : public NamedObjectContext<Strategy>
             creators["wotlk-fos"] = &DungeonStrategyContext::wotlk_fos;     // The Forge of Souls
         }
     private:
+        static Strategy* tbc_hfr(PlayerbotAI* botAI) { return new TbcDungeonHellfireRampartsStrategy(botAI); }
         static Strategy* tbc_bf(PlayerbotAI* botAI) { return new TbcDungeonBloodFurnaceStrategy(botAI); }
-        static Strategy* tbc_hr(PlayerbotAI* botAI) { return new TbcDungeonHellfireRampartsStrategy(botAI); }
         static Strategy* tbc_ac(PlayerbotAI* botAI) { return new TbcDungeonAuchenaiCryptsStrategy(botAI); }
         static Strategy* wotlk_uk(PlayerbotAI* botAI) { return new WotlkDungeonUKStrategy(botAI); }
         static Strategy* wotlk_nex(PlayerbotAI* botAI) { return new WotlkDungeonNexStrategy(botAI); }
