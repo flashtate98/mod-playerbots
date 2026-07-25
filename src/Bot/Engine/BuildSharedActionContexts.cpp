@@ -50,9 +50,9 @@ void AiObjectContext::BuildSharedActionContexts(SharedNamedObjectContextList<Act
     actionContexts.Add(new RaidOnyxiaActionContext());
     actionContexts.Add(new RaidIccActionContext());
     actionContexts.Add(new RaidRsActionContext());
+    actionContexts.Add(new TbcDungeonAuchenaiCryptsActionContext());
     actionContexts.Add(new TbcDungeonHellfireRampartsActionContext());
     actionContexts.Add(new TbcDungeonBloodFurnaceActionContext());
-    actionContexts.Add(new TbcDungeonAuchenaiCryptsActionContext());
     actionContexts.Add(new WotlkDungeonUKActionContext());
     actionContexts.Add(new WotlkDungeonNexActionContext());
     actionContexts.Add(new WotlkDungeonANActionContext());
