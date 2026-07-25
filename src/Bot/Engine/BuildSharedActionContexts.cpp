@@ -31,10 +31,12 @@ void AiObjectContext::BuildSharedActionContexts(SharedNamedObjectContextList<Act
     actionContexts.Add(new RaidAq20ActionContext());
     actionContexts.Add(new RaidMcActionContext());
     actionContexts.Add(new RaidBwlActionContext());
+    actionContexts.Add(new TbcDungeonAuchenaiCryptsActionContext());
     actionContexts.Add(new RaidKarazhanActionContext());
     actionContexts.Add(new RaidGruulsLairActionContext());
     actionContexts.Add(new RaidMagtheridonActionContext());
     actionContexts.Add(new RaidSSCActionContext());
+    actionContexts.Add(new RaidZulAmanActionContext());
     actionContexts.Add(new RaidTempestKeepActionContext());
     actionContexts.Add(new RaidHyjalSummitActionContext());
     actionContexts.Add(new RaidBlackTempleActionContext());
